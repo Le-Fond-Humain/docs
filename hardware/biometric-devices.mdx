@@ -1,215 +1,328 @@
 ---
 title: Biometric authentication devices
-description: Fingerprint and multi-modal biometric authentication solutions
+description: Fingerprint and facial recognition security solutions
 ---
 
 ## Overview
 
-VaultWares biometric authentication devices provide secure, convenient access control using fingerprint recognition and multi-modal biometric technologies. These devices eliminate password vulnerabilities while providing fast, accurate user authentication.
-
-## Key features
-
-<CardGroup cols={2}>
-  <Card title="High accuracy" icon="bullseye">
-    False acceptance rate &lt; 0.001%
-  </Card>
-  <Card title="Fast authentication" icon="bolt">
-    Recognition in under 1 second
-  </Card>
-  <Card title="Liveness detection" icon="hand">
-    Prevents spoofing with fake fingerprints
-  </Card>
-  <Card title="Privacy-focused" icon="eye-slash">
-    Biometric templates never leave the device
-  </Card>
-</CardGroup>
+VaultWares biometric authentication devices provide passwordless security using fingerprint scanning and facial recognition technology. These devices integrate seamlessly with your existing infrastructure to add an additional layer of security through biometric verification.
 
 ## Product lineup
 
-### VaultBio Reader
+<CardGroup cols={2}>
+  <Card title="VaultScan Fingerprint" icon="fingerprint">
+    **Type**: USB fingerprint scanner  
+    **Resolution**: 500 DPI  
+    **Certification**: FBI PIV-071006
+  </Card>
+  <Card title="VaultScan Pro" icon="hand">
+    **Type**: Multi-finger scanner  
+    **Resolution**: 1000 DPI  
+    **Certification**: FBI PIV-071006, FIPS 201
+  </Card>
+  <Card title="VaultFace Recognition" icon="user-check">
+    **Type**: 3D facial recognition camera  
+    **Technology**: Infrared + RGB  
+    **Certification**: ISO/IEC 30107-3
+  </Card>
+  <Card title="VaultAccess Terminal" icon="tablet">
+    **Type**: All-in-one access control terminal  
+    **Features**: Fingerprint + face + card reader  
+    **Display**: 7" touchscreen
+  </Card>
+</CardGroup>
 
-USB fingerprint reader for workstation authentication.
+## Key features
 
-**Specifications:**
-- **Sensor type**: Capacitive fingerprint sensor
-- **Resolution**: 508 DPI
-- **Sensor size**: 12.8mm x 18mm
-- **Interface**: USB 2.0
-- **Recognition speed**: < 1 second
-- **Template storage**: Up to 10 fingerprints
-- **Operating system**: Windows, macOS, Linux
-- **Certifications**: FBI PIV-071006 certified
+### Biometric capabilities
+- **High accuracy**: False acceptance rate (FAR) < 0.001%
+- **Fast authentication**: < 1 second verification time
+- **Liveness detection**: Anti-spoofing technology prevents fake fingerprints/photos
+- **Multi-modal**: Combine fingerprint and facial recognition for enhanced security
+- **Large capacity**: Store up to 10,000 biometric templates per device
 
-### VaultBio Pro
+### Security features
+- **Template encryption**: Biometric data encrypted with AES-256
+- **Secure storage**: Templates stored in tamper-resistant memory
+- **No raw data storage**: Only mathematical templates stored, not actual images
+- **Privacy compliant**: GDPR and BIPA compliant biometric data handling
+- **Audit logging**: Complete authentication attempt logs
 
-Advanced fingerprint reader with liveness detection.
+### Integration capabilities
+- **LDAP/Active Directory**: Sync with existing user directories
+- **SAML/OAuth**: Integrate with SSO providers
+- **REST API**: Programmatic enrollment and authentication
+- **SDK support**: Windows, macOS, Linux, iOS, Android
+- **Physical access control**: Integrate with door locks and turnstiles
 
-**Specifications:**
-- **Sensor type**: Optical fingerprint sensor with liveness detection
-- **Resolution**: 500 DPI
-- **Sensor size**: 16mm x 20mm
-- **Interface**: USB 2.0
-- **Recognition speed**: < 0.5 seconds
-- **Template storage**: Up to 20 fingerprints
-- **Liveness detection**: Capacitance and pulse detection
-- **Operating system**: Windows, macOS, Linux
-- **Certifications**: FBI PIV-071006, FIDO2 certified
+## Technical specifications
 
-### VaultBio Multi
+<Tabs>
+  <Tab title="VaultScan Fingerprint">
+    | Specification | Details |
+    |--------------|---------|
+    | Sensor type | Optical fingerprint sensor |
+    | Resolution | 500 DPI |
+    | Image size | 256 x 360 pixels |
+    | Scan area | 15mm x 20mm |
+    | Interface | USB 2.0 |
+    | FAR | < 0.001% |
+    | FRR | < 0.1% |
+    | Verification time | < 0.5 seconds |
+    | Template size | 512 bytes |
+    | Operating temp | 0°C to 45°C |
+    | Dimensions | 65mm x 45mm x 25mm |
+    | Certification | FBI PIV-071006 |
+    | Warranty | 3 years |
+  </Tab>
+  
+  <Tab title="VaultScan Pro">
+    | Specification | Details |
+    |--------------|---------|
+    | Sensor type | Capacitive multi-finger sensor |
+    | Resolution | 1000 DPI |
+    | Image size | 512 x 512 pixels |
+    | Scan area | 25mm x 25mm |
+    | Interface | USB 3.0 |
+    | FAR | < 0.0001% |
+    | FRR | < 0.05% |
+    | Verification time | < 0.3 seconds |
+    | Template size | 1024 bytes |
+    | Operating temp | 0°C to 45°C |
+    | Dimensions | 85mm x 65mm x 30mm |
+    | Certification | FBI PIV-071006, FIPS 201 |
+    | Warranty | 5 years |
+  </Tab>
+  
+  <Tab title="VaultFace Recognition">
+    | Specification | Details |
+    |--------------|---------|
+    | Camera type | 3D structured light |
+    | Resolution | 1920 x 1080 RGB + IR |
+    | Depth accuracy | ±1mm at 0.5m |
+    | Recognition distance | 0.3m to 1.5m |
+    | Interface | USB 3.0 |
+    | FAR | < 0.0001% |
+    | FRR | < 0.1% |
+    | Verification time | < 0.8 seconds |
+    | Liveness detection | Active (3D depth analysis) |
+    | Operating temp | 0°C to 40°C |
+    | Dimensions | 120mm x 40mm x 30mm |
+    | Certification | ISO/IEC 30107-3 Level 2 |
+    | Warranty | 3 years |
+  </Tab>
+  
+  <Tab title="VaultAccess Terminal">
+    | Specification | Details |
+    |--------------|---------|
+    | Display | 7" capacitive touchscreen (1024x600) |
+    | Fingerprint | 500 DPI optical sensor |
+    | Face recognition | 2MP RGB + IR camera |
+    | Card reader | RFID (125kHz + 13.56MHz) |
+    | Interface | Ethernet, Wi-Fi, USB |
+    | Capacity | 10,000 users, 100,000 events |
+    | Relay output | 2x relay for door/gate control |
+    | Wiegand | Input/output support |
+    | Power | 12V DC, 2A |
+    | Operating temp | -10°C to 50°C |
+    | Dimensions | 200mm x 150mm x 40mm |
+    | Mounting | Wall-mount or desktop stand |
+    | Warranty | 5 years |
+  </Tab>
+</Tabs>
 
-Multi-modal biometric authentication terminal.
-
-**Specifications:**
-- **Biometric modes**: Fingerprint, facial recognition, iris scan
-- **Display**: 7-inch touchscreen
-- **Fingerprint sensor**: 508 DPI capacitive
-- **Camera**: 2MP with IR illumination
-- **Interface**: Ethernet, Wi-Fi, USB
-- **Recognition speed**: < 1 second per modality
-- **Template storage**: 10,000+ users
-- **Operating temperature**: 0°C to 50°C
-- **Certifications**: FBI PIV-071006, FIDO2
-
-## Setup and configuration
+## Setup and usage
 
 ### Initial setup
 
 <Steps>
-  <Step title="Connect device">
-    Connect the biometric device to an available USB port or network connection.
+  <Step title="Connect the device">
+    Plug the biometric device into an available USB port or connect via network (for terminal models).
   </Step>
-  <Step title="Install drivers">
-    Download and install VaultWares biometric drivers.
+  <Step title="Install software">
     ```bash
-    # Windows
-    VaultBio-Drivers-Setup.exe
-
-    # macOS
-    sudo installer -pkg VaultBio-Drivers.pkg -target /
-
-    # Linux
-    sudo dpkg -i vaultbio-drivers.deb
-    sudo systemctl start vaultbio
+    # Download and install VaultWares Biometric Suite
+    wget https://downloads.vaultwares.com/biometric-suite-latest.deb
+    sudo dpkg -i biometric-suite-latest.deb
+    ```
+  </Step>
+  <Step title="Configure device">
+    ```bash
+    # Initialize device
+    vw-biometric init --device /dev/vaultscan0
+    
+    # Set security level
+    vw-biometric config --security-level high --liveness-check enabled
     ```
   </Step>
   <Step title="Enroll users">
-    Launch the enrollment wizard to register fingerprints.
-  </Step>
-  <Step title="Configure policies">
-    Set authentication policies and security requirements.
+    Launch the enrollment wizard or use the CLI to register biometric templates.
   </Step>
 </Steps>
 
 ### User enrollment
 
-<Tabs>
-  <Tab title="Windows">
-    ```powershell
-    # Launch enrollment wizard
-    Start-Process "C:\Program Files\VaultWares\VaultBio\Enroll.exe"
+<CodeGroup>
+```bash CLI enrollment
+# Enroll fingerprint
+vw-biometric enroll \
+  --user john.doe \
+  --type fingerprint \
+  --finger right-index \
+  --samples 3
 
-    # Or use command line
-    vaultbio-enroll --user "john.doe" --finger "right-index"
-    ```
-  </Tab>
-  <Tab title="Linux">
-    ```bash
-    # Enroll user
-    sudo vaultbio-enroll --user john.doe --finger right-index
+# Enroll face
+vw-biometric enroll \
+  --user john.doe \
+  --type face \
+  --samples 5 \
+  --require-liveness
+```
 
-    # Verify enrollment
-    vaultbio-verify --user john.doe
-    ```
-  </Tab>
-  <Tab title="Web interface">
-    For VaultBio Multi terminals:
-    1. Navigate to `https://<device-ip>/admin`
-    2. Click "Enroll User"
-    3. Enter user details
-    4. Follow on-screen instructions to scan fingerprint
-    5. Repeat for additional fingers (recommended: 2-3 fingers)
-  </Tab>
-</Tabs>
+```python Python SDK
+from vaultwares import BiometricSDK
 
-### Best practices for enrollment
+# Initialize SDK
+sdk = BiometricSDK(device='/dev/vaultscan0')
 
-<AccordionGroup>
-  <Accordion title="Enroll multiple fingers">
-    Register 2-3 fingers per user to ensure access if one finger is injured or dirty.
-  </Accordion>
-  <Accordion title="Clean hands">
-    Ensure hands are clean and dry during enrollment for best template quality.
-  </Accordion>
-  <Accordion title="Proper placement">
-    Center the finger on the sensor and apply moderate pressure. Avoid sliding or rolling.
-  </Accordion>
-  <Accordion title="Multiple scans">
-    The system will request 3-5 scans of each finger to create a robust template.
-  </Accordion>
-</AccordionGroup>
+# Enroll fingerprint
+template = sdk.enroll_fingerprint(
+    user_id='john.doe',
+    finger='right_index',
+    samples=3
+)
 
-## Integration
+# Save template
+sdk.save_template(template, encrypted=True)
+```
+
+```javascript Node.js SDK
+const { BiometricSDK } = require('vaultwares-biometric');
+
+// Initialize SDK
+const sdk = new BiometricSDK({ device: '/dev/vaultscan0' });
+
+// Enroll fingerprint
+const template = await sdk.enrollFingerprint({
+  userId: 'john.doe',
+  finger: 'right_index',
+  samples: 3
+});
+
+// Save template
+await sdk.saveTemplate(template, { encrypted: true });
+```
+</CodeGroup>
+
+### Authentication
+
+<CodeGroup>
+```bash CLI authentication
+# Verify fingerprint
+vw-biometric verify \
+  --type fingerprint \
+  --timeout 10s
+
+# Output:
+# User: john.doe
+# Match score: 98.7%
+# Status: AUTHENTICATED
+```
+
+```python Python SDK
+from vaultwares import BiometricSDK
+
+sdk = BiometricSDK(device='/dev/vaultscan0')
+
+# Capture and verify
+result = sdk.verify_fingerprint(timeout=10)
+
+if result.authenticated:
+    print(f"User {result.user_id} authenticated")
+    print(f"Match score: {result.score}%")
+else:
+    print("Authentication failed")
+```
+
+```javascript Node.js SDK
+const { BiometricSDK } = require('vaultwares-biometric');
+
+const sdk = new BiometricSDK({ device: '/dev/vaultscan0' });
+
+// Capture and verify
+const result = await sdk.verifyFingerprint({ timeout: 10000 });
+
+if (result.authenticated) {
+  console.log(`User ${result.userId} authenticated`);
+  console.log(`Match score: ${result.score}%`);
+} else {
+  console.log('Authentication failed');
+}
+```
+</CodeGroup>
+
+## Integration examples
 
 ### Windows Hello integration
 
-VaultWares biometric devices integrate seamlessly with Windows Hello:
-
 ```powershell
-# Enable Windows Hello with VaultBio
-Set-ItemProperty -Path "HKLM:\SOFTWARE\VaultWares\VaultBio" -Name "WindowsHello" -Value 1
+# Register VaultWares as Windows Hello provider
+Register-VaultWaresHelloProvider -DeviceType Fingerprint
 
-# Configure Windows Hello
-$user = Get-LocalUser -Name "john.doe"
-Enable-WindowsHello -User $user -BiometricDevice "VaultBio"
+# Configure policy
+Set-VaultWaresHelloPolicy `
+  -RequireBiometric $true `
+  -AllowPIN $false `
+  -RequireTPM $true
 ```
 
 ### Linux PAM integration
 
-Configure PAM to use VaultWares biometric authentication:
-
 ```bash
-# Edit PAM configuration
+# Configure PAM for biometric authentication
 sudo nano /etc/pam.d/common-auth
 
-# Add VaultBio module
-auth    sufficient    pam_vaultbio.so
+# Add before other auth methods:
+auth    sufficient    pam_vaultwares.so
 auth    required      pam_unix.so try_first_pass
-
-# Test configuration
-sudo pam-auth-update
 ```
 
 ### Active Directory integration
 
-Integrate with Active Directory for enterprise authentication:
+```bash
+# Sync users from Active Directory
+vw-biometric ad-sync \
+  --server dc1.example.com \
+  --domain example.com \
+  --base-dn "OU=Users,DC=example,DC=com" \
+  --sync-interval 1h
 
-```powershell
-# Install VaultBio AD connector
-Install-Module -Name VaultBio.ActiveDirectory
-
-# Configure AD integration
-Set-VaultBioADConfig -Domain "corp.example.com" -OU "OU=Users,DC=corp,DC=example,DC=com"
-
-# Sync users
-Sync-VaultBioADUsers -Incremental
+# Map AD users to biometric templates
+vw-biometric ad-map \
+  --attribute sAMAccountName \
+  --auto-enroll false
 ```
 
 ### Web application integration
 
-<CodeGroup>
-```javascript JavaScript
-// Initialize VaultBio SDK
-const vaultbio = new VaultBio({
+```javascript
+// JavaScript Web API
+const vaultBio = new VaultWaresBiometric({
   apiKey: 'your-api-key',
-  deviceId: 'device-001'
+  endpoint: 'https://biometric.example.com'
 });
 
-// Authenticate user
-async function authenticate() {
+// Request authentication
+async function authenticateUser() {
   try {
-    const result = await vaultbio.authenticate();
+    const result = await vaultBio.authenticate({
+      type: 'fingerprint',
+      timeout: 15000
+    });
+    
     if (result.success) {
-      console.log('User authenticated:', result.userId);
+      // User authenticated
+      console.log('Welcome, ' + result.userId);
       // Proceed with login
     }
   } catch (error) {
@@ -218,205 +331,189 @@ async function authenticate() {
 }
 ```
 
-```python Python
-from vaultbio import BiometricAuth
+### Physical access control
 
-# Initialize SDK
-auth = BiometricAuth(
-    api_key='your-api-key',
-    device_id='device-001'
-)
+```bash
+# Configure door controller
+vw-biometric access-control \
+  --device terminal-01 \
+  --relay 1 \
+  --unlock-duration 5s \
+  --require-biometric fingerprint \
+  --require-card true
 
-# Authenticate user
-result = auth.authenticate()
-if result.success:
-    print(f'User authenticated: {result.user_id}')
-    # Proceed with login
-else:
-    print(f'Authentication failed: {result.error}')
+# Set access schedule
+vw-biometric schedule \
+  --device terminal-01 \
+  --user john.doe \
+  --days mon-fri \
+  --hours 08:00-18:00
 ```
 
-```java Java
-import com.vaultwares.biometric.BiometricAuth;
+## Multi-factor authentication
 
-// Initialize SDK
-BiometricAuth auth = new BiometricAuth.Builder()
-    .apiKey("your-api-key")
-    .deviceId("device-001")
-    .build();
+### Combine biometric with other factors
 
-// Authenticate user
-AuthResult result = auth.authenticate();
-if (result.isSuccess()) {
-    System.out.println("User authenticated: " + result.getUserId());
-    // Proceed with login
-} else {
-    System.out.println("Authentication failed: " + result.getError());
+```bash
+# Configure MFA policy
+vw-biometric mfa-policy \
+  --require-biometric fingerprint \
+  --require-pin true \
+  --require-card true \
+  --any-two-of-three
+
+# User must provide 2 of 3 factors:
+# 1. Fingerprint
+# 2. PIN code
+# 3. RFID card
+```
+
+### Adaptive authentication
+
+```json
+{
+  "adaptive_policy": {
+    "low_risk": {
+      "factors": ["fingerprint"],
+      "conditions": ["known_device", "known_location"]
+    },
+    "medium_risk": {
+      "factors": ["fingerprint", "pin"],
+      "conditions": ["new_device", "known_location"]
+    },
+    "high_risk": {
+      "factors": ["fingerprint", "face", "pin"],
+      "conditions": ["new_device", "unknown_location"]
+    }
+  }
 }
 ```
-</CodeGroup>
 
-## Security features
+## Privacy and compliance
 
-### Template protection
+### GDPR compliance
 
-<CardGroup cols={2}>
-  <Card title="On-device storage" icon="microchip">
-    Biometric templates stored in secure element, never transmitted
-  </Card>
-  <Card title="Encrypted templates" icon="lock">
-    Templates encrypted with AES-256 if stored externally
-  </Card>
-  <Card title="One-way conversion" icon="arrow-right">
-    Cannot reconstruct original fingerprint from template
-  </Card>
-  <Card title="Template diversity" icon="fingerprint">
-    Different templates for different applications
-  </Card>
-</CardGroup>
+<AccordionGroup>
+  <Accordion title="Data minimization">
+    VaultWares stores only mathematical templates, not raw biometric images. Templates cannot be reverse-engineered to recreate the original biometric data.
+  </Accordion>
+  
+  <Accordion title="User consent">
+    Built-in consent management requires explicit user approval before enrollment.
+    ```bash
+    vw-biometric enroll --require-consent --consent-text "custom-text.txt"
+    ```
+  </Accordion>
+  
+  <Accordion title="Right to erasure">
+    Users can request deletion of their biometric data at any time.
+    ```bash
+    vw-biometric delete-user --user john.doe --purge-all-data
+    ```
+  </Accordion>
+  
+  <Accordion title="Data portability">
+    Export user biometric templates in encrypted format.
+    ```bash
+    vw-biometric export --user john.doe --output user-data.enc
+    ```
+  </Accordion>
+</AccordionGroup>
 
-### Anti-spoofing
+### BIPA compliance (Illinois)
 
-VaultBio Pro and Multi include advanced liveness detection:
-
-- **Capacitance detection**: Distinguishes real skin from fake materials
-- **Pulse detection**: Verifies blood flow in the finger
-- **Temperature sensing**: Confirms body temperature
-- **3D depth mapping**: Detects flat images or molds
-
-### Privacy compliance
-
-VaultWares biometric devices comply with privacy regulations:
-
-- **GDPR compliant**: Biometric data processing meets EU requirements
-- **BIPA compliant**: Follows Illinois Biometric Information Privacy Act
-- **CCPA compliant**: California Consumer Privacy Act compliance
-- **User consent**: Explicit consent required for enrollment
-
-## Management and monitoring
-
-### Enterprise management
-
-Centrally manage biometric devices across your organization:
+- **Written consent**: Obtain written release before collecting biometric data
+- **Retention policy**: Automatically delete templates after specified period
+- **No selling**: Templates are never shared or sold to third parties
+- **Security**: AES-256 encryption for all stored templates
 
 ```bash
-# View all devices
-vaultbio-admin devices list
-
-# Update device firmware
-vaultbio-admin firmware update --device-id device-001
-
-# Generate usage report
-vaultbio-admin report --type usage --start-date 2024-01-01 --end-date 2024-01-31
-
-# Configure device policy
-vaultbio-admin policy set --device-id device-001 --quality-threshold high --max-attempts 3
+# Configure BIPA-compliant retention
+vw-biometric retention-policy \
+  --max-age 3years \
+  --auto-delete true \
+  --require-written-consent
 ```
 
-### Monitoring and alerts
+## Monitoring and reporting
 
-Configure monitoring for authentication events:
-
-```yaml
-# monitoring-config.yml
-alerts:
-  - type: failed_authentication
-    threshold: 5
-    window: 5m
-    action: email
-    recipients:
-      - security@example.com
-  
-  - type: device_offline
-    threshold: 1
-    window: 1m
-    action: sms
-    recipients:
-      - +1-555-0100
-  
-  - type: spoofing_attempt
-    threshold: 1
-    window: 1m
-    action: email,sms
-    recipients:
-      - security@example.com
-      - +1-555-0100
-```
-
-### Audit logging
-
-All authentication attempts are logged for compliance:
+### Authentication logs
 
 ```bash
-# View audit logs
-vaultbio-admin audit view --filter "failed_auth" --last 24h
+# View authentication attempts
+vw-biometric logs \
+  --start-date "2024-01-01" \
+  --end-date "2024-01-31" \
+  --status all \
+  --format csv > auth-report.csv
 
-# Export audit logs
-vaultbio-admin audit export --format csv --output audit-2024-01.csv --month 2024-01
-
-# Configure syslog forwarding
-vaultbio-admin audit syslog --server 192.168.1.50 --port 514 --protocol tcp
+# Real-time monitoring
+vw-biometric monitor --live
 ```
 
-## Use cases
+### Performance metrics
 
-<CardGroup cols={2}>
-  <Card title="Workstation login" icon="desktop">
-    Replace passwords with fast, secure biometric authentication for Windows, macOS, and Linux workstations.
-  </Card>
-  <Card title="Physical access control" icon="door-open">
-    Control access to secure facilities with VaultBio Multi terminals at entry points.
-  </Card>
-  <Card title="Time and attendance" icon="clock">
-    Accurately track employee time with biometric verification to prevent buddy punching.
-  </Card>
-  <Card title="Healthcare" icon="heart-pulse">
-    Secure access to electronic health records with HIPAA-compliant biometric authentication.
-  </Card>
-</CardGroup>
+```bash
+# Device health check
+vw-biometric health-check
+
+# Output:
+# Device: VaultScan Pro (/dev/vaultscan0)
+# Status: Online
+# Sensor health: Good
+# Template count: 1,247
+# Avg verification time: 0.28s
+# Success rate (24h): 99.2%
+# Failed attempts (24h): 12
+```
 
 ## Troubleshooting
 
 <AccordionGroup>
   <Accordion title="Fingerprint not recognized">
     - Clean the sensor with a soft, dry cloth
-    - Ensure your finger is clean and dry
-    - Try a different enrolled finger
-    - Re-enroll the fingerprint if quality is poor
+    - Ensure finger is dry and clean
+    - Try different finger pressure
+    - Re-enroll the fingerprint with more samples
+    - Check sensor health: `vw-biometric health-check`
   </Accordion>
+  
+  <Accordion title="Face recognition fails">
+    - Ensure adequate lighting (not too bright or dark)
+    - Remove glasses or accessories if causing issues
+    - Position face within 0.3-1.5m range
+    - Look directly at camera
+    - Re-enroll with different lighting conditions
+  </Accordion>
+  
+  <Accordion title="High false rejection rate">
+    - Lower security threshold: `vw-biometric config --threshold medium`
+    - Enroll more samples per user
+    - Check for sensor wear or damage
+    - Update firmware: `vw-biometric update-firmware`
+  </Accordion>
+  
   <Accordion title="Device not detected">
-    - Verify USB connection
-    - Check Device Manager (Windows) or lsusb (Linux)
-    - Reinstall drivers from VaultWares customer portal
-    - Try a different USB port
-  </Accordion>
-  <Accordion title="Slow recognition">
-    - Clean the sensor surface
-    - Ensure proper finger placement (centered, moderate pressure)
-    - Check system resources (CPU, memory)
-    - Update device firmware
-  </Accordion>
-  <Accordion title="Liveness detection failures">
-    - Ensure adequate lighting for optical sensors
-    - Warm up cold fingers before scanning
-    - Apply moderate pressure to ensure good contact
-    - Contact support if issue persists
+    - Check USB connection
+    - Verify drivers installed: `vw-biometric-driver --version`
+    - Check device permissions: `ls -l /dev/vaultscan*`
+    - Restart biometric service: `sudo systemctl restart vaultwares-biometric`
   </Accordion>
 </AccordionGroup>
 
 ## Next steps
 
 <CardGroup cols={2}>
-  <Card title="Integration guides" icon="plug" href="/installation/integration-guides">
-    Integrate biometric authentication
+  <Card title="Installation guide" icon="download" href="/installation/hardware-installation">
+    Detailed setup instructions
   </Card>
-  <Card title="Access control software" icon="key" href="/software/access-control">
-    Explore access control solutions
+  <Card title="API reference" icon="code" href="/api-reference/endpoints">
+    Programmatic integration
   </Card>
   <Card title="Best practices" icon="star" href="/guides/best-practices">
-    Security best practices
+    Security recommendations
   </Card>
   <Card title="Support" icon="headset" href="/support/contact">
-    Get technical support
+    Get technical assistance
   </Card>
 </CardGroup>
