@@ -1,0 +1,251 @@
+---
+title: Quick installation guide
+description: Get started with VaultWares products in minutes
+---
+
+## Prerequisites
+
+Before you begin, ensure you have:
+
+- Reviewed the [system requirements](/getting-started/system-requirements)
+- Administrator or root access to your system
+- Active internet connection for license validation
+- Your VaultWares license key (provided with purchase)
+
+## Installation methods
+
+<Tabs>
+  <Tab title="Hardware devices">
+    ### Encrypted storage devices
+
+    <Steps>
+      <Step title="Connect the device">
+        Plug the encrypted storage device into an available USB 3.0 port.
+      </Step>
+      <Step title="Install drivers">
+        Download and run the driver installer from the VaultWares customer portal.
+        ```bash
+        # Windows
+        VaultWares-Drivers-Setup.exe
+
+        # macOS
+        sudo installer -pkg VaultWares-Drivers.pkg -target /
+
+        # Linux
+        sudo dpkg -i vaultwares-drivers.deb
+        ```
+      </Step>
+      <Step title="Initialize the device">
+        Launch the VaultWares management console and follow the initialization wizard to set up encryption keys.
+      </Step>
+      <Step title="Verify installation">
+        Confirm the device appears in your system and is properly encrypted.
+      </Step>
+    </Steps>
+
+    ### Hardware security modules (HSM)
+
+    <Steps>
+      <Step title="Physical installation">
+        For PCIe HSMs, power down the server and install the card in an available PCIe x4 slot. For network HSMs, connect to your network via Ethernet.
+      </Step>
+      <Step title="Power on and configure">
+        Boot the system and access the HSM configuration interface via the management console.
+      </Step>
+      <Step title="Initialize security officer">
+        Set up the security officer credentials and initialize the HSM.
+        ```bash
+        vaultwares-hsm init --so-pin <your-pin>
+        ```
+      </Step>
+      <Step title="Create partitions">
+        Configure logical partitions for different applications or departments.
+      </Step>
+    </Steps>
+  </Tab>
+
+  <Tab title="Software products">
+    ### Windows installation
+
+    <Steps>
+      <Step title="Download installer">
+        Download the latest VaultWares software installer from the customer portal.
+      </Step>
+      <Step title="Run installer">
+        Execute the installer with administrator privileges.
+        ```powershell
+        VaultWares-Setup.exe /S /LICENSE=<your-license-key>
+        ```
+      </Step>
+      <Step title="Configure settings">
+        Launch the VaultWares configuration wizard and enter your license key.
+      </Step>
+      <Step title="Start services">
+        The installer will automatically start VaultWares services. Verify in Services Manager.
+      </Step>
+    </Steps>
+
+    ### Linux installation
+
+    <Steps>
+      <Step title="Add repository">
+        Add the VaultWares package repository to your system.
+        ```bash
+        # Ubuntu/Debian
+        curl -fsSL https://packages.vaultwares.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/vaultwares.gpg
+        echo "deb [signed-by=/usr/share/keyrings/vaultwares.gpg] https://packages.vaultwares.com/apt stable main" | sudo tee /etc/apt/sources.list.d/vaultwares.list
+
+        # RHEL/CentOS
+        sudo yum-config-manager --add-repo https://packages.vaultwares.com/rpm/vaultwares.repo
+        ```
+      </Step>
+      <Step title="Install package">
+        Install VaultWares using your package manager.
+        ```bash
+        # Ubuntu/Debian
+        sudo apt update
+        sudo apt install vaultwares
+
+        # RHEL/CentOS
+        sudo yum install vaultwares
+        ```
+      </Step>
+      <Step title="Configure license">
+        Add your license key to the configuration file.
+        ```bash
+        sudo vaultwares-config --license <your-license-key>
+        ```
+      </Step>
+      <Step title="Enable and start service">
+        Enable the service to start on boot and start it now.
+        ```bash
+        sudo systemctl enable vaultwares
+        sudo systemctl start vaultwares
+        ```
+      </Step>
+    </Steps>
+
+    ### Docker deployment
+
+    <Steps>
+      <Step title="Pull image">
+        Pull the official VaultWares Docker image.
+        ```bash
+        docker pull vaultwares/security-platform:latest
+        ```
+      </Step>
+      <Step title="Create configuration">
+        Create a configuration file with your license key.
+        ```yaml
+        # vaultwares-config.yml
+        license: <your-license-key>
+        database:
+          host: postgres
+          port: 5432
+          name: vaultwares
+        ```
+      </Step>
+      <Step title="Run container">
+        Start the VaultWares container.
+        ```bash
+        docker run -d \
+          --name vaultwares \
+          -p 8443:8443 \
+          -v $(pwd)/vaultwares-config.yml:/etc/vaultwares/config.yml \
+          vaultwares/security-platform:latest
+        ```
+      </Step>
+    </Steps>
+  </Tab>
+</Tabs>
+
+## Post-installation steps
+
+### Verify installation
+
+<CodeGroup>
+```bash Windows
+vaultwares --version
+vaultwares status
+```
+
+```bash Linux
+vaultwares --version
+systemctl status vaultwares
+```
+
+```bash Docker
+docker exec vaultwares vaultwares --version
+```
+</CodeGroup>
+
+### Access management console
+
+1. Open your web browser and navigate to `https://localhost:8443`
+2. Log in with the default administrator credentials (change immediately)
+3. Complete the initial setup wizard
+
+### Configure backup
+
+Set up automated backups of your VaultWares configuration:
+
+```bash
+vaultwares backup configure \
+  --destination /backup/vaultwares \
+  --schedule daily \
+  --retention 30
+```
+
+### Enable monitoring
+
+Configure health monitoring and alerts:
+
+```bash
+vaultwares monitor enable \
+  --email admin@yourcompany.com \
+  --threshold critical
+```
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Installation fails with permission error">
+    Ensure you're running the installer with administrator or root privileges. On Linux, use `sudo`. On Windows, right-click and select "Run as administrator".
+  </Accordion>
+
+  <Accordion title="License validation fails">
+    Verify your internet connection and ensure outbound HTTPS (port 443) is allowed through your firewall. Check that your license key is entered correctly.
+  </Accordion>
+
+  <Accordion title="Service won't start">
+    Check the logs for detailed error messages:
+    ```bash
+    # Linux
+    sudo journalctl -u vaultwares -n 50
+
+    # Windows
+    Get-EventLog -LogName Application -Source VaultWares -Newest 50
+    ```
+  </Accordion>
+
+  <Accordion title="Hardware device not recognized">
+    Ensure drivers are properly installed and the device is connected to a compatible port. Try a different USB port or restart your system.
+  </Accordion>
+</AccordionGroup>
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Initial configuration" icon="gear" href="/installation/initial-configuration">
+    Configure VaultWares for your environment
+  </Card>
+  <Card title="Integration guides" icon="plug" href="/installation/integration-guides">
+    Integrate with existing systems
+  </Card>
+  <Card title="Best practices" icon="star" href="/guides/best-practices">
+    Learn security best practices
+  </Card>
+  <Card title="Get support" icon="headset" href="/support/contact">
+    Contact our support team
+  </Card>
+</CardGroup>
