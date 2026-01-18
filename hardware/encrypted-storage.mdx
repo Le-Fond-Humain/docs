@@ -1,0 +1,228 @@
+---
+title: Encrypted storage devices
+description: Secure USB drives and external storage with hardware-based encryption
+---
+
+## Overview
+
+VaultWares encrypted storage devices provide military-grade data protection with hardware-based AES-256 encryption. All encryption and decryption operations occur within the device's secure processor, ensuring your data never exists in an unencrypted state on the host system.
+
+## Key features
+
+<CardGroup cols={2}>
+  <Card title="Hardware encryption" icon="lock">
+    AES-256 XTS encryption performed entirely in hardware
+  </Card>
+  <Card title="FIPS 140-2 Level 3" icon="certificate">
+    Certified for government and enterprise use
+  </Card>
+  <Card title="Tamper-resistant" icon="shield-halved">
+    Physical security features prevent unauthorized access
+  </Card>
+  <Card title="Cross-platform" icon="laptop">
+    Works with Windows, macOS, and Linux
+  </Card>
+</CardGroup>
+
+## Product lineup
+
+### VaultDrive Pro
+
+High-performance encrypted USB drive for professionals.
+
+**Specifications:**
+- **Capacity**: 64GB, 128GB, 256GB, 512GB, 1TB
+- **Interface**: USB 3.2 Gen 2 (10 Gbps)
+- **Read speed**: Up to 450 MB/s
+- **Write speed**: Up to 400 MB/s
+- **Encryption**: AES-256 XTS hardware encryption
+- **Authentication**: PIN or biometric (fingerprint)
+- **Certifications**: FIPS 140-2 Level 3, Common Criteria EAL5+
+
+### VaultDrive Enterprise
+
+Enterprise-grade encrypted storage with centralized management.
+
+**Specifications:**
+- **Capacity**: 256GB, 512GB, 1TB, 2TB
+- **Interface**: USB 3.2 Gen 2 (10 Gbps)
+- **Read speed**: Up to 500 MB/s
+- **Write speed**: Up to 450 MB/s
+- **Encryption**: AES-256 XTS hardware encryption
+- **Authentication**: PIN, biometric, smart card
+- **Management**: Centralized policy enforcement
+- **Certifications**: FIPS 140-2 Level 3, TAA compliant
+
+### VaultDrive Rugged
+
+Military-grade encrypted storage for extreme environments.
+
+**Specifications:**
+- **Capacity**: 128GB, 256GB, 512GB, 1TB
+- **Interface**: USB 3.2 Gen 1 (5 Gbps)
+- **Durability**: IP68 rated (waterproof and dustproof)
+- **Drop resistance**: 3 meters
+- **Operating temperature**: -40°C to 85°C
+- **Encryption**: AES-256 XTS hardware encryption
+- **Authentication**: PIN or biometric
+- **Certifications**: FIPS 140-2 Level 3, MIL-STD-810G
+
+## Setup and usage
+
+### Initial setup
+
+<Steps>
+  <Step title="Connect device">
+    Plug the encrypted storage device into an available USB port.
+  </Step>
+  <Step title="Install software">
+    Download and install the VaultWares management software from the customer portal.
+  </Step>
+  <Step title="Initialize encryption">
+    Launch the setup wizard and create your master password or PIN.
+    ```bash
+    # The device will prompt for initialization
+    # Set a strong PIN (8-16 digits)
+    # Optionally enroll biometric authentication
+    ```
+  </Step>
+  <Step title="Configure policies">
+    Set password complexity requirements, auto-lock timeout, and other security policies.
+  </Step>
+</Steps>
+
+### Daily usage
+
+1. **Unlock the device**: Enter your PIN or use biometric authentication
+2. **Access files**: The device appears as a standard removable drive
+3. **Lock the device**: Eject the drive or wait for auto-lock timeout
+
+### Enterprise management
+
+Administrators can centrally manage encrypted storage devices:
+
+```bash
+# Enroll device in enterprise management
+vaultwares-admin enroll --device-id <device-id> --policy enterprise-standard
+
+# Set password policy
+vaultwares-admin policy set --min-length 12 --complexity high --max-attempts 5
+
+# Generate compliance report
+vaultwares-admin report --type compliance --format pdf
+```
+
+## Security features
+
+### Hardware-based encryption
+
+All encryption operations occur within the device's tamper-resistant processor:
+
+- **No software vulnerabilities**: Encryption keys never leave the secure element
+- **Brute-force protection**: Automatic data destruction after failed attempts
+- **Secure boot**: Verified firmware prevents malware injection
+
+### Authentication methods
+
+<Tabs>
+  <Tab title="PIN authentication">
+    - 8-16 digit PIN
+    - Configurable complexity requirements
+    - Automatic lockout after failed attempts
+    - PIN change enforcement
+  </Tab>
+  <Tab title="Biometric authentication">
+    - Fingerprint recognition
+    - 360° finger placement
+    - False acceptance rate: < 0.001%
+    - Stores up to 10 fingerprints
+  </Tab>
+  <Tab title="Smart card (Enterprise only)">
+    - PIV/CAC card support
+    - Two-factor authentication
+    - Certificate-based authentication
+    - Integration with PKI infrastructure
+  </Tab>
+</Tabs>
+
+### Data protection
+
+<AccordionGroup>
+  <Accordion title="Automatic encryption">
+    All data written to the device is automatically encrypted in real-time using AES-256 XTS mode.
+  </Accordion>
+  <Accordion title="Secure erase">
+    Cryptographic erase instantly destroys all data by deleting encryption keys. Physical destruction is also available.
+  </Accordion>
+  <Accordion title="Read-only mode">
+    Configure devices to prevent data modification, ideal for evidence preservation or secure data distribution.
+  </Accordion>
+  <Accordion title="Self-destruct">
+    Automatic data destruction after a configured number of failed authentication attempts (configurable from 5-20 attempts).
+  </Accordion>
+</AccordionGroup>
+
+## Compliance and certifications
+
+- **FIPS 140-2 Level 3**: Validated by NIST for cryptographic security
+- **Common Criteria EAL5+**: International security certification
+- **TAA compliant**: Meets Trade Agreements Act requirements
+- **GDPR compliant**: Supports data protection requirements
+- **HIPAA compliant**: Suitable for protected health information
+
+## Use cases
+
+<CardGroup cols={2}>
+  <Card title="Healthcare" icon="heart-pulse">
+    Securely transport patient records and medical imaging while maintaining HIPAA compliance.
+  </Card>
+  <Card title="Finance" icon="building-columns">
+    Protect sensitive financial data and meet regulatory requirements for data security.
+  </Card>
+  <Card title="Government" icon="landmark">
+    Store and transport classified information with FIPS-validated encryption.
+  </Card>
+  <Card title="Legal" icon="scale-balanced">
+    Maintain attorney-client privilege with tamper-evident encrypted storage.
+  </Card>
+</CardGroup>
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Device not recognized">
+    - Ensure drivers are installed from the VaultWares customer portal
+    - Try a different USB port (USB 3.0 or higher recommended)
+    - Check Device Manager (Windows) or System Information (macOS) for errors
+  </Accordion>
+  <Accordion title="Forgot PIN">
+    If you've forgotten your PIN and don't have a recovery key, the data cannot be recovered. This is a security feature. Contact support for device reset options.
+  </Accordion>
+  <Accordion title="Slow performance">
+    - Ensure the device is connected to a USB 3.0 or higher port
+    - Check for background antivirus scans
+    - Verify sufficient free space on the device
+  </Accordion>
+  <Accordion title="Biometric not working">
+    - Clean the fingerprint sensor with a soft, dry cloth
+    - Re-enroll your fingerprint in the management software
+    - Ensure your finger is dry and covers the entire sensor
+  </Accordion>
+</AccordionGroup>
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Hardware installation" icon="screwdriver-wrench" href="/installation/hardware-installation">
+    Detailed installation instructions
+  </Card>
+  <Card title="Best practices" icon="star" href="/guides/best-practices">
+    Security best practices
+  </Card>
+  <Card title="HSM devices" icon="server" href="/hardware/hsm">
+    Explore hardware security modules
+  </Card>
+  <Card title="Support" icon="headset" href="/support/contact">
+    Get technical support
+  </Card>
+</CardGroup>
