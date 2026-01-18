@@ -1,0 +1,539 @@
+---
+title: Network security appliances
+description: Enterprise network security and encryption appliances
+---
+
+## Overview
+
+VaultWares network security appliances provide comprehensive network protection with hardware-accelerated encryption, intrusion detection, and advanced threat prevention. These rack-mountable appliances deliver enterprise-grade security without compromising network performance.
+
+## Key features
+
+<CardGroup cols={2}>
+  <Card title="High throughput" icon="gauge-high">
+    Up to 10 Gbps encrypted throughput
+  </Card>
+  <Card title="Hardware acceleration" icon="microchip">
+    Dedicated crypto processors for encryption
+  </Card>
+  <Card title="Zero-trust architecture" icon="shield-check">
+    Comprehensive access control and segmentation
+  </Card>
+  <Card title="Threat prevention" icon="shield-virus">
+    Real-time threat detection and blocking
+  </Card>
+</CardGroup>
+
+## Product lineup
+
+### VaultGate 1000
+
+Entry-level network security appliance for small businesses.
+
+**Specifications:**
+- **Form factor**: 1U rack-mountable
+- **Throughput**: 1 Gbps (encrypted)
+- **Ports**: 4x Gigabit Ethernet
+- **VPN tunnels**: Up to 100 concurrent
+- **Users**: Up to 250
+- **Power**: Single PSU, 100-240V AC
+- **Storage**: 128GB SSD
+- **Memory**: 8GB DDR4
+- **Certifications**: Common Criteria EAL4+
+
+### VaultGate 5000
+
+Mid-range appliance for medium enterprises.
+
+**Specifications:**
+- **Form factor**: 1U rack-mountable
+- **Throughput**: 5 Gbps (encrypted)
+- **Ports**: 8x Gigabit Ethernet, 2x 10GbE SFP+
+- **VPN tunnels**: Up to 500 concurrent
+- **Users**: Up to 1,000
+- **Power**: Dual redundant PSU, 100-240V AC
+- **Storage**: 512GB SSD
+- **Memory**: 32GB DDR4
+- **Certifications**: Common Criteria EAL4+, FIPS 140-2
+
+### VaultGate 10000
+
+High-performance appliance for large enterprises.
+
+**Specifications:**
+- **Form factor**: 2U rack-mountable
+- **Throughput**: 10 Gbps (encrypted)
+- **Ports**: 12x Gigabit Ethernet, 4x 10GbE SFP+, 2x 40GbE QSFP+
+- **VPN tunnels**: Up to 2,000 concurrent
+- **Users**: Unlimited
+- **Power**: Dual redundant PSU, 100-240V AC
+- **Storage**: 1TB NVMe SSD
+- **Memory**: 64GB DDR4
+- **Certifications**: Common Criteria EAL4+, FIPS 140-2 Level 3
+
+## Installation
+
+### Physical installation
+
+<Steps>
+  <Step title="Rack mounting">
+    Install the appliance in your server rack using the included mounting brackets.
+  </Step>
+  <Step title="Power connection">
+    Connect power cables to both PSUs (if dual PSU model) for redundancy.
+  </Step>
+  <Step title="Network cabling">
+    Connect WAN port to your internet connection and LAN ports to your internal network.
+    ```
+    WAN Port (eth0) → Internet/ISP
+    LAN Port (eth1) → Internal Network Switch
+    DMZ Port (eth2) → DMZ Network (optional)
+    HA Port (eth3) → High Availability Partner (optional)
+    ```
+  </Step>
+  <Step title="Console access">
+    Connect via serial console for initial configuration (115200 8N1).
+  </Step>
+</Steps>
+
+### Initial configuration
+
+<Tabs>
+  <Tab title="Console setup">
+    ```bash
+    # Connect via serial console
+    # Default credentials: admin / VaultWares123! (change immediately)
+
+    # Configure management interface
+    configure
+    set interface eth0 ip 192.168.1.1/24
+    set interface eth0 description "WAN"
+    
+    set interface eth1 ip 10.0.0.1/24
+    set interface eth1 description "LAN"
+    
+    # Set default gateway
+    set routing default-gateway 192.168.1.254
+    
+    # Configure DNS
+    set dns primary 8.8.8.8
+    set dns secondary 8.8.4.4
+    
+    # Commit changes
+    commit
+    save
+    ```
+  </Tab>
+  <Tab title="Web interface">
+    After initial console configuration:
+    
+    1. Navigate to `https://10.0.0.1` (LAN IP)
+    2. Log in with admin credentials
+    3. Complete the setup wizard:
+       - Set hostname and domain
+       - Configure time zone and NTP
+       - Set up administrator accounts
+       - Configure network interfaces
+       - Apply license key
+  </Tab>
+</Tabs>
+
+## Configuration
+
+### Firewall rules
+
+<CodeGroup>
+```bash CLI
+# Allow HTTPS from LAN to WAN
+vaultgate firewall rule add \
+  --name "Allow_HTTPS_Out" \
+  --source-zone LAN \
+  --dest-zone WAN \
+  --service HTTPS \
+  --action allow
+
+# Block all inbound traffic except established
+vaultgate firewall rule add \
+  --name "Block_Inbound" \
+  --source-zone WAN \
+  --dest-zone LAN \
+  --action deny \
+  --log yes
+
+# Allow specific inbound service
+vaultgate firewall rule add \
+  --name "Allow_Web_Server" \
+  --source-zone WAN \
+  --dest-zone DMZ \
+  --dest-ip 10.0.1.10 \
+  --service HTTPS \
+  --action allow
+```
+
+```yaml Configuration file
+# firewall-rules.yml
+rules:
+  - name: Allow_HTTPS_Out
+    source_zone: LAN
+    dest_zone: WAN
+    service: HTTPS
+    action: allow
+    
+  - name: Block_Inbound
+    source_zone: WAN
+    dest_zone: LAN
+    action: deny
+    log: true
+    
+  - name: Allow_Web_Server
+    source_zone: WAN
+    dest_zone: DMZ
+    dest_ip: 10.0.1.10
+    service: HTTPS
+    action: allow
+```
+</CodeGroup>
+
+### VPN configuration
+
+#### Site-to-site VPN
+
+```bash
+# Create IPsec VPN tunnel
+vaultgate vpn ipsec create \
+  --name "Branch_Office" \
+  --local-gateway 203.0.113.1 \
+  --remote-gateway 198.51.100.1 \
+  --local-subnet 10.0.0.0/24 \
+  --remote-subnet 10.1.0.0/24 \
+  --psk "your-pre-shared-key" \
+  --encryption AES-256 \
+  --authentication SHA-256 \
+  --dh-group 14
+
+# Enable tunnel
+vaultgate vpn ipsec enable --name "Branch_Office"
+
+# Verify status
+vaultgate vpn ipsec status
+```
+
+#### Remote access VPN
+
+```bash
+# Configure SSL VPN
+vaultgate vpn ssl configure \
+  --port 443 \
+  --ip-pool 10.10.0.0/24 \
+  --dns 10.0.0.1 \
+  --split-tunnel yes \
+  --routes 10.0.0.0/8
+
+# Create user
+vaultgate vpn ssl user add \
+  --username john.doe \
+  --password "SecurePassword123!" \
+  --groups "Engineering,VPN_Users"
+
+# Enable SSL VPN
+vaultgate vpn ssl enable
+```
+
+### Intrusion prevention
+
+<Tabs>
+  <Tab title="IPS configuration">
+    ```bash
+    # Enable IPS
+    vaultgate ips enable
+    
+    # Set IPS mode
+    vaultgate ips mode --type inline --action block
+    
+    # Update signatures
+    vaultgate ips update
+    
+    # Configure custom rule
+    vaultgate ips rule add \
+      --name "Block_SQL_Injection" \
+      --pattern "(\%27)|(\')|(\-\-)|(\%23)|(#)" \
+      --action block \
+      --severity high
+    ```
+  </Tab>
+  <Tab title="Threat prevention">
+    ```bash
+    # Enable anti-malware
+    vaultgate security antimalware enable
+    
+    # Enable anti-phishing
+    vaultgate security antiphishing enable
+    
+    # Configure URL filtering
+    vaultgate security urlfilter enable \
+      --categories "malware,phishing,adult" \
+      --action block
+    
+    # Enable botnet protection
+    vaultgate security botnet enable \
+      --action block \
+      --log yes
+    ```
+  </Tab>
+</Tabs>
+
+### Network segmentation
+
+Implement zero-trust network segmentation:
+
+```bash
+# Create security zones
+vaultgate zone create --name "Corporate" --interface eth1
+vaultgate zone create --name "Guest" --interface eth2
+vaultgate zone create --name "IoT" --interface eth3
+vaultgate zone create --name "DMZ" --interface eth4
+
+# Configure inter-zone policies
+vaultgate policy add \
+  --from Corporate \
+  --to Internet \
+  --action allow \
+  --log yes
+
+vaultgate policy add \
+  --from Guest \
+  --to Corporate \
+  --action deny \
+  --log yes
+
+vaultgate policy add \
+  --from IoT \
+  --to Corporate \
+  --action deny \
+  --log yes
+```
+
+## Advanced features
+
+### High availability
+
+Configure active-passive HA for redundancy:
+
+```bash
+# Configure HA on primary
+vaultgate ha configure \
+  --role primary \
+  --peer-ip 10.0.0.2 \
+  --ha-interface eth3 \
+  --virtual-ip 10.0.0.254 \
+  --sync-interval 1s
+
+# Configure HA on secondary
+vaultgate ha configure \
+  --role secondary \
+  --peer-ip 10.0.0.1 \
+  --ha-interface eth3 \
+  --virtual-ip 10.0.0.254 \
+  --sync-interval 1s
+
+# Verify HA status
+vaultgate ha status
+```
+
+### Load balancing
+
+Distribute traffic across multiple servers:
+
+```bash
+# Create server pool
+vaultgate lb pool create \
+  --name "WebServers" \
+  --algorithm round-robin \
+  --health-check http
+
+# Add servers to pool
+vaultgate lb pool member add \
+  --pool "WebServers" \
+  --server 10.0.1.10 \
+  --port 80 \
+  --weight 100
+
+vaultgate lb pool member add \
+  --pool "WebServers" \
+  --server 10.0.1.11 \
+  --port 80 \
+  --weight 100
+
+# Create virtual server
+vaultgate lb vserver create \
+  --name "WebVIP" \
+  --ip 203.0.113.10 \
+  --port 80 \
+  --pool "WebServers"
+```
+
+### Traffic shaping
+
+Prioritize critical traffic:
+
+```bash
+# Create QoS policy
+vaultgate qos policy create \
+  --name "VoIP_Priority" \
+  --class voice \
+  --bandwidth 2Mbps \
+  --priority high
+
+vaultgate qos policy create \
+  --name "Bulk_Traffic" \
+  --class bulk \
+  --bandwidth 10Mbps \
+  --priority low
+
+# Apply to interface
+vaultgate qos apply --interface eth0 --policy "VoIP_Priority,Bulk_Traffic"
+```
+
+## Monitoring and logging
+
+### Real-time monitoring
+
+<Tabs>
+  <Tab title="Dashboard">
+    Access the web dashboard at `https://<appliance-ip>/dashboard` to view:
+    
+    - Real-time throughput graphs
+    - Active sessions and connections
+    - VPN tunnel status
+    - Threat detection events
+    - System resource utilization
+  </Tab>
+  <Tab title="CLI monitoring">
+    ```bash
+    # View active sessions
+    vaultgate session list
+    
+    # Monitor bandwidth usage
+    vaultgate monitor bandwidth --interface eth0
+    
+    # View threat logs
+    vaultgate log threat --tail 100
+    
+    # Check VPN status
+    vaultgate vpn status --all
+    
+    # System health
+    vaultgate system health
+    ```
+  </Tab>
+</Tabs>
+
+### Logging and SIEM integration
+
+```bash
+# Configure syslog forwarding
+vaultgate log syslog add \
+  --server 192.168.1.50 \
+  --port 514 \
+  --protocol tcp \
+  --facility local0 \
+  --severity info
+
+# Configure SNMP
+vaultgate snmp configure \
+  --community public \
+  --trap-server 192.168.1.51 \
+  --version v3
+
+# Export logs
+vaultgate log export \
+  --type firewall \
+  --start-date 2024-01-01 \
+  --end-date 2024-01-31 \
+  --format csv \
+  --output firewall-logs.csv
+```
+
+## Maintenance
+
+### Firmware updates
+
+<Warning>
+  Always backup configuration before updating firmware.
+</Warning>
+
+```bash
+# Backup configuration
+vaultgate config backup --output config-backup-$(date +%Y%m%d).xml
+
+# Download firmware
+vaultgate firmware download --version 5.2.1
+
+# Install firmware
+vaultgate firmware install --version 5.2.1 --reboot yes
+
+# Verify version
+vaultgate system version
+```
+
+### Configuration backup
+
+```bash
+# Manual backup
+vaultgate config backup --output /backup/config.xml
+
+# Scheduled backup
+vaultgate config backup schedule \
+  --frequency daily \
+  --time 02:00 \
+  --destination sftp://backup.example.com/vaultgate/
+
+# Restore configuration
+vaultgate config restore --input config-backup.xml
+```
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="No internet connectivity">
+    - Verify WAN interface configuration: `vaultgate interface show eth0`
+    - Check default gateway: `vaultgate routing show`
+    - Test connectivity: `ping 8.8.8.8`
+    - Review firewall rules: `vaultgate firewall rule list`
+  </Accordion>
+  <Accordion title="VPN tunnel not establishing">
+    - Verify peer gateway is reachable: `ping <remote-gateway>`
+    - Check IPsec configuration: `vaultgate vpn ipsec show --name <tunnel>`
+    - Review logs: `vaultgate log vpn --tail 50`
+    - Ensure firewall allows UDP 500 and 4500
+  </Accordion>
+  <Accordion title="High CPU usage">
+    - Check active sessions: `vaultgate session count`
+    - Review IPS load: `vaultgate ips stats`
+    - Disable unnecessary features temporarily
+    - Consider upgrading to higher-capacity model
+  </Accordion>
+  <Accordion title="HA failover not working">
+    - Verify HA interface connectivity: `vaultgate ha interface test`
+    - Check HA status: `vaultgate ha status`
+    - Review HA logs: `vaultgate log ha`
+    - Ensure both units have identical configuration
+  </Accordion>
+</AccordionGroup>
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Integration guides" icon="plug" href="/installation/integration-guides">
+    Integrate with existing infrastructure
+  </Card>
+  <Card title="Security monitoring" icon="chart-line" href="/software/security-monitoring">
+    Advanced security monitoring
+  </Card>
+  <Card title="Best practices" icon="star" href="/guides/best-practices">
+    Network security best practices
+  </Card>
+  <Card title="Support" icon="headset" href="/support/contact">
+    Get technical support
+  </Card>
+</CardGroup>
