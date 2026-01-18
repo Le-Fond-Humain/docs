@@ -1,68 +1,120 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Mint Starter Kit",
+  "name": "VaultWares Documentation",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#1E40AF",
+    "light": "#3B82F6",
+    "dark": "#1E3A8A"
   },
   "favicon": "/favicon.svg",
   "navigation": {
     "tabs": [
       {
-        "tab": "Guides",
+        "tab": "Product documentation",
+        "icon": "shield-halved",
         "groups": [
           {
             "group": "Getting started",
+            "icon": "rocket",
             "pages": [
-              "index",
-              "quickstart",
-              "development"
+              "getting-started/overview",
+              "getting-started/system-requirements",
+              "getting-started/quick-installation"
             ]
           },
           {
-            "group": "Customization",
+            "group": "Hardware products",
+            "icon": "microchip",
             "pages": [
-              "essentials/settings",
-              "essentials/navigation"
+              "hardware/encrypted-storage",
+              "hardware/hsm",
+              "hardware/biometric-devices",
+              "hardware/network-appliances"
             ]
           },
           {
-            "group": "Writing content",
+            "group": "Software products",
+            "icon": "code",
             "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/reusable-snippets"
+              "software/encryption-software",
+              "software/access-control",
+              "software/backup-recovery",
+              "software/security-monitoring"
             ]
           },
           {
-            "group": "AI tools",
+            "group": "Installation & setup",
+            "icon": "wrench",
             "pages": [
-              "ai-tools/cursor",
-              "ai-tools/claude-code",
-              "ai-tools/windsurf"
+              "installation/hardware-installation",
+              "installation/software-deployment",
+              "installation/initial-configuration",
+              "installation/integration-guides"
+            ]
+          },
+          {
+            "group": "User guides",
+            "icon": "book-open",
+            "pages": [
+              "guides/daily-operations",
+              "guides/best-practices",
+              "guides/troubleshooting",
+              "guides/maintenance"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Security & compliance",
+        "icon": "shield-check",
+        "groups": [
+          {
+            "group": "Security standards",
+            "pages": [
+              "security/encryption-protocols",
+              "security/certifications",
+              "security/industry-standards"
+            ]
+          },
+          {
+            "group": "Compliance guides",
+            "pages": [
+              "compliance/gdpr",
+              "compliance/hipaa",
+              "compliance/pci-dss",
+              "compliance/data-residency"
             ]
           }
         ]
       },
       {
         "tab": "API reference",
+        "icon": "square-terminal",
         "groups": [
           {
             "group": "API documentation",
             "pages": [
-              "api-reference/introduction"
+              "api-reference/authentication",
+              "api-reference/endpoints",
+              "api-reference/webhooks",
+              "api-reference/sdk"
             ]
-          },
+          }
+        ]
+      },
+      {
+        "tab": "Support",
+        "icon": "headset",
+        "groups": [
           {
-            "group": "Endpoint examples",
+            "group": "Help center",
             "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
+              "support/faq",
+              "support/contact",
+              "support/warranty",
+              "support/rma",
+              "support/updates"
             ]
           }
         ]
@@ -71,14 +123,14 @@
     "global": {
       "anchors": [
         {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
+          "anchor": "Community",
+          "href": "https://community.vaultwares.com",
+          "icon": "users"
         },
         {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
+          "anchor": "Knowledge base",
+          "href": "https://kb.vaultwares.com",
+          "icon": "graduation-cap"
         }
       ]
     }
@@ -90,14 +142,14 @@
   "navbar": {
     "links": [
       {
-        "label": "Support",
-        "href": "mailto:hi@mintlify.com"
+        "label": "Contact sales",
+        "href": "https://vaultwares.com/contact"
       }
     ],
     "primary": {
       "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
+      "label": "Customer portal",
+      "href": "https://portal.vaultwares.com"
     }
   },
   "contextual": {
@@ -114,9 +166,9 @@
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "x": "https://x.com/vaultwares",
+      "github": "https://github.com/vaultwares",
+      "linkedin": "https://linkedin.com/company/vaultwares"
     }
   }
 }
