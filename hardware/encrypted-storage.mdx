@@ -1,228 +1,288 @@
 ---
 title: Encrypted storage devices
-description: Secure USB drives and external storage with hardware-based encryption
+description: Military-grade encrypted USB storage solutions
 ---
 
 ## Overview
 
-VaultWares encrypted storage devices provide military-grade data protection with hardware-based AES-256 encryption. All encryption and decryption operations occur within the device's secure processor, ensuring your data never exists in an unencrypted state on the host system.
-
-## Key features
-
-<CardGroup cols={2}>
-  <Card title="Hardware encryption" icon="lock">
-    AES-256 XTS encryption performed entirely in hardware
-  </Card>
-  <Card title="FIPS 140-2 Level 3" icon="certificate">
-    Certified for government and enterprise use
-  </Card>
-  <Card title="Tamper-resistant" icon="shield-halved">
-    Physical security features prevent unauthorized access
-  </Card>
-  <Card title="Cross-platform" icon="laptop">
-    Works with Windows, macOS, and Linux
-  </Card>
-</CardGroup>
+VaultWares encrypted storage devices provide hardware-based AES-256 encryption for portable data security. All encryption and decryption operations occur within the device's secure processor, ensuring your data never exists in an unencrypted state on the host computer.
 
 ## Product lineup
 
-### VaultDrive Pro
+<CardGroup cols={2}>
+  <Card title="VaultDrive Pro" icon="usb-drive">
+    **Capacity**: 64GB - 2TB  
+    **Speed**: USB 3.2 Gen 2 (10 Gbps)  
+    **Certification**: FIPS 140-2 Level 3
+  </Card>
+  <Card title="VaultDrive Enterprise" icon="hard-drive">
+    **Capacity**: 512GB - 4TB  
+    **Speed**: USB 3.2 Gen 2x2 (20 Gbps)  
+    **Certification**: FIPS 140-3 Level 3
+  </Card>
+  <Card title="VaultDrive Rugged" icon="shield">
+    **Capacity**: 128GB - 1TB  
+    **Speed**: USB 3.2 Gen 2 (10 Gbps)  
+    **Features**: IP68 waterproof, military-grade durability
+  </Card>
+  <Card title="VaultDrive Biometric" icon="fingerprint">
+    **Capacity**: 128GB - 2TB  
+    **Speed**: USB 3.2 Gen 2 (10 Gbps)  
+    **Features**: Built-in fingerprint scanner
+  </Card>
+</CardGroup>
 
-High-performance encrypted USB drive for professionals.
+## Key features
 
-**Specifications:**
-- **Capacity**: 64GB, 128GB, 256GB, 512GB, 1TB
-- **Interface**: USB 3.2 Gen 2 (10 Gbps)
-- **Read speed**: Up to 450 MB/s
-- **Write speed**: Up to 400 MB/s
-- **Encryption**: AES-256 XTS hardware encryption
-- **Authentication**: PIN or biometric (fingerprint)
-- **Certifications**: FIPS 140-2 Level 3, Common Criteria EAL5+
+### Hardware encryption
+- **AES-256-XTS encryption**: Military-grade encryption standard
+- **Secure processor**: Dedicated encryption chip isolated from host
+- **No software required**: Works without installing drivers or applications
+- **Brute-force protection**: Automatic lockout after failed attempts
 
-### VaultDrive Enterprise
+### Security features
+- **Password protection**: Alphanumeric passwords up to 64 characters
+- **Two-factor authentication**: Optional TOTP support (Enterprise models)
+- **Self-destruct mode**: Cryptographic key erasure on command
+- **Tamper detection**: Physical intrusion alerts and automatic lockdown
+- **Read-only mode**: Write-protect sensitive data
 
-Enterprise-grade encrypted storage with centralized management.
+### Management capabilities
+- **Remote management**: Centralized control via VaultWares Management Console
+- **Policy enforcement**: Password complexity, timeout settings, access controls
+- **Audit logging**: Complete access and operation logs
+- **Geofencing**: Location-based access restrictions (Enterprise models)
 
-**Specifications:**
-- **Capacity**: 256GB, 512GB, 1TB, 2TB
-- **Interface**: USB 3.2 Gen 2 (10 Gbps)
-- **Read speed**: Up to 500 MB/s
-- **Write speed**: Up to 450 MB/s
-- **Encryption**: AES-256 XTS hardware encryption
-- **Authentication**: PIN, biometric, smart card
-- **Management**: Centralized policy enforcement
-- **Certifications**: FIPS 140-2 Level 3, TAA compliant
+## Technical specifications
 
-### VaultDrive Rugged
-
-Military-grade encrypted storage for extreme environments.
-
-**Specifications:**
-- **Capacity**: 128GB, 256GB, 512GB, 1TB
-- **Interface**: USB 3.2 Gen 1 (5 Gbps)
-- **Durability**: IP68 rated (waterproof and dustproof)
-- **Drop resistance**: 3 meters
-- **Operating temperature**: -40°C to 85°C
-- **Encryption**: AES-256 XTS hardware encryption
-- **Authentication**: PIN or biometric
-- **Certifications**: FIPS 140-2 Level 3, MIL-STD-810G
+<Tabs>
+  <Tab title="VaultDrive Pro">
+    | Specification | Details |
+    |--------------|---------|
+    | Encryption | AES-256-XTS hardware encryption |
+    | Interface | USB 3.2 Gen 2 (USB-C) |
+    | Transfer speed | Up to 500 MB/s read, 450 MB/s write |
+    | Capacities | 64GB, 128GB, 256GB, 512GB, 1TB, 2TB |
+    | Operating temp | 0°C to 45°C |
+    | Dimensions | 80mm x 22mm x 10mm |
+    | Weight | 25g |
+    | Warranty | 5 years |
+    | Certifications | FIPS 140-2 Level 3, Common Criteria EAL5+ |
+  </Tab>
+  
+  <Tab title="VaultDrive Enterprise">
+    | Specification | Details |
+    |--------------|---------|
+    | Encryption | AES-256-XTS hardware encryption |
+    | Interface | USB 3.2 Gen 2x2 (USB-C) |
+    | Transfer speed | Up to 1000 MB/s read, 900 MB/s write |
+    | Capacities | 512GB, 1TB, 2TB, 4TB |
+    | Operating temp | 0°C to 45°C |
+    | Dimensions | 95mm x 28mm x 12mm |
+    | Weight | 45g |
+    | Warranty | 7 years |
+    | Certifications | FIPS 140-3 Level 3, Common Criteria EAL6+ |
+  </Tab>
+  
+  <Tab title="VaultDrive Rugged">
+    | Specification | Details |
+    |--------------|---------|
+    | Encryption | AES-256-XTS hardware encryption |
+    | Interface | USB 3.2 Gen 2 (USB-C) |
+    | Transfer speed | Up to 450 MB/s read, 400 MB/s write |
+    | Capacities | 128GB, 256GB, 512GB, 1TB |
+    | Operating temp | -20°C to 60°C |
+    | Dimensions | 90mm x 30mm x 15mm |
+    | Weight | 65g |
+    | Durability | IP68, MIL-STD-810G, 3m drop resistant |
+    | Warranty | 5 years |
+    | Certifications | FIPS 140-2 Level 3 |
+  </Tab>
+  
+  <Tab title="VaultDrive Biometric">
+    | Specification | Details |
+    |--------------|---------|
+    | Encryption | AES-256-XTS hardware encryption |
+    | Interface | USB 3.2 Gen 2 (USB-C) |
+    | Transfer speed | Up to 500 MB/s read, 450 MB/s write |
+    | Capacities | 128GB, 256GB, 512GB, 1TB, 2TB |
+    | Biometric | 360° fingerprint sensor, 500 DPI |
+    | User profiles | Up to 10 fingerprints |
+    | Operating temp | 0°C to 45°C |
+    | Dimensions | 85mm x 25mm x 12mm |
+    | Weight | 35g |
+    | Warranty | 5 years |
+    | Certifications | FIPS 140-2 Level 3, FBI PIV-071006 |
+  </Tab>
+</Tabs>
 
 ## Setup and usage
 
 ### Initial setup
 
 <Steps>
-  <Step title="Connect device">
-    Plug the encrypted storage device into an available USB port.
+  <Step title="Connect the device">
+    Plug the VaultDrive into an available USB port.
   </Step>
-  <Step title="Install software">
-    Download and install the VaultWares management software from the customer portal.
+  <Step title="Set master password">
+    On first use, you'll be prompted to create a master password (8-64 characters).
   </Step>
-  <Step title="Initialize encryption">
-    Launch the setup wizard and create your master password or PIN.
-    ```bash
-    # The device will prompt for initialization
-    # Set a strong PIN (8-16 digits)
-    # Optionally enroll biometric authentication
-    ```
+  <Step title="Enroll biometrics (if applicable)">
+    For biometric models, scan your fingerprint following the on-screen instructions.
   </Step>
-  <Step title="Configure policies">
-    Set password complexity requirements, auto-lock timeout, and other security policies.
+  <Step title="Access your drive">
+    The encrypted volume will mount automatically after successful authentication.
   </Step>
 </Steps>
 
 ### Daily usage
 
-1. **Unlock the device**: Enter your PIN or use biometric authentication
-2. **Access files**: The device appears as a standard removable drive
-3. **Lock the device**: Eject the drive or wait for auto-lock timeout
-
-### Enterprise management
-
-Administrators can centrally manage encrypted storage devices:
-
 ```bash
-# Enroll device in enterprise management
-vaultwares-admin enroll --device-id <device-id> --policy enterprise-standard
+# The device appears as a standard removable drive
+# Windows: Assigned drive letter (e.g., E:)
+# macOS: Mounted in /Volumes/VaultDrive
+# Linux: Mounted in /media/username/VaultDrive
 
-# Set password policy
-vaultwares-admin policy set --min-length 12 --complexity high --max-attempts 5
+# Copy files normally
+cp sensitive-data.pdf /Volumes/VaultDrive/
 
-# Generate compliance report
-vaultwares-admin report --type compliance --format pdf
+# Safely eject when done
+# macOS
+diskutil eject /Volumes/VaultDrive
+
+# Linux
+sudo umount /media/username/VaultDrive
 ```
 
-## Security features
+### Password management
 
-### Hardware-based encryption
+<CodeGroup>
+```bash Change password
+# Using VaultWares CLI
+vw-storage change-password --device /dev/sdb
 
-All encryption operations occur within the device's tamper-resistant processor:
+# Or use the web interface
+# Navigate to: https://localhost:8443/storage/manage
+```
 
-- **No software vulnerabilities**: Encryption keys never leave the secure element
-- **Brute-force protection**: Automatic data destruction after failed attempts
-- **Secure boot**: Verified firmware prevents malware injection
+```bash Reset device
+# Factory reset (erases all data)
+vw-storage factory-reset --device /dev/sdb --confirm
 
-### Authentication methods
+# This action is irreversible
+```
 
-<Tabs>
-  <Tab title="PIN authentication">
-    - 8-16 digit PIN
-    - Configurable complexity requirements
-    - Automatic lockout after failed attempts
-    - PIN change enforcement
-  </Tab>
-  <Tab title="Biometric authentication">
-    - Fingerprint recognition
-    - 360° finger placement
-    - False acceptance rate: < 0.001%
-    - Stores up to 10 fingerprints
-  </Tab>
-  <Tab title="Smart card (Enterprise only)">
-    - PIV/CAC card support
-    - Two-factor authentication
-    - Certificate-based authentication
-    - Integration with PKI infrastructure
-  </Tab>
-</Tabs>
+```bash Enable read-only mode
+# Protect against accidental modifications
+vw-storage set-readonly --device /dev/sdb --enable
+```
+</CodeGroup>
 
-### Data protection
+## Enterprise management
 
-<AccordionGroup>
-  <Accordion title="Automatic encryption">
-    All data written to the device is automatically encrypted in real-time using AES-256 XTS mode.
-  </Accordion>
-  <Accordion title="Secure erase">
-    Cryptographic erase instantly destroys all data by deleting encryption keys. Physical destruction is also available.
-  </Accordion>
-  <Accordion title="Read-only mode">
-    Configure devices to prevent data modification, ideal for evidence preservation or secure data distribution.
-  </Accordion>
-  <Accordion title="Self-destruct">
-    Automatic data destruction after a configured number of failed authentication attempts (configurable from 5-20 attempts).
-  </Accordion>
-</AccordionGroup>
+### Centralized deployment
+
+```bash
+# Deploy configuration to multiple devices
+vw-admin deploy-config \
+  --policy corporate-standard \
+  --devices device-list.txt \
+  --enforce-password-complexity \
+  --require-2fa \
+  --audit-logging enabled
+```
+
+### Policy enforcement
+
+```json
+{
+  "password_policy": {
+    "min_length": 12,
+    "require_uppercase": true,
+    "require_numbers": true,
+    "require_special_chars": true,
+    "max_age_days": 90
+  },
+  "security_settings": {
+    "max_failed_attempts": 5,
+    "lockout_duration_minutes": 30,
+    "auto_lock_timeout_minutes": 5,
+    "require_2fa": true
+  },
+  "access_control": {
+    "allowed_networks": ["10.0.0.0/8", "192.168.1.0/24"],
+    "geofencing_enabled": true,
+    "allowed_countries": ["US", "CA", "GB"]
+  }
+}
+```
 
 ## Compliance and certifications
 
-- **FIPS 140-2 Level 3**: Validated by NIST for cryptographic security
-- **Common Criteria EAL5+**: International security certification
-- **TAA compliant**: Meets Trade Agreements Act requirements
-- **GDPR compliant**: Supports data protection requirements
-- **HIPAA compliant**: Suitable for protected health information
-
-## Use cases
-
-<CardGroup cols={2}>
-  <Card title="Healthcare" icon="heart-pulse">
-    Securely transport patient records and medical imaging while maintaining HIPAA compliance.
-  </Card>
-  <Card title="Finance" icon="building-columns">
-    Protect sensitive financial data and meet regulatory requirements for data security.
-  </Card>
-  <Card title="Government" icon="landmark">
-    Store and transport classified information with FIPS-validated encryption.
-  </Card>
-  <Card title="Legal" icon="scale-balanced">
-    Maintain attorney-client privilege with tamper-evident encrypted storage.
-  </Card>
-</CardGroup>
+<AccordionGroup>
+  <Accordion title="FIPS 140-2/140-3 Level 3">
+    All VaultDrive models are certified to FIPS 140-2 or 140-3 Level 3, meeting requirements for:
+    - Physical tamper detection and response
+    - Identity-based authentication
+    - Cryptographic key management
+    - Secure key entry and output
+  </Accordion>
+  
+  <Accordion title="Common Criteria EAL5+/EAL6+">
+    Independently evaluated and certified for security functionality and assurance.
+  </Accordion>
+  
+  <Accordion title="GDPR compliance">
+    Hardware encryption ensures data protection requirements are met for portable storage.
+  </Accordion>
+  
+  <Accordion title="HIPAA compliance">
+    Meets technical safeguards for protecting electronic protected health information (ePHI).
+  </Accordion>
+</AccordionGroup>
 
 ## Troubleshooting
 
 <AccordionGroup>
   <Accordion title="Device not recognized">
-    - Ensure drivers are installed from the VaultWares customer portal
-    - Try a different USB port (USB 3.0 or higher recommended)
-    - Check Device Manager (Windows) or System Information (macOS) for errors
+    - Try a different USB port
+    - Ensure USB 3.0 or higher port is used
+    - Update USB drivers on your system
+    - Test on another computer to isolate the issue
   </Accordion>
-  <Accordion title="Forgot PIN">
-    If you've forgotten your PIN and don't have a recovery key, the data cannot be recovered. This is a security feature. Contact support for device reset options.
+  
+  <Accordion title="Forgotten password">
+    Contact VaultWares support with proof of ownership. Note: Data cannot be recovered without the password due to hardware encryption.
   </Accordion>
-  <Accordion title="Slow performance">
-    - Ensure the device is connected to a USB 3.0 or higher port
-    - Check for background antivirus scans
-    - Verify sufficient free space on the device
+  
+  <Accordion title="Slow transfer speeds">
+    - Verify you're using a USB 3.0+ port
+    - Check cable quality (use included cable)
+    - Disable antivirus real-time scanning temporarily
+    - Ensure sufficient free space on the device
   </Accordion>
-  <Accordion title="Biometric not working">
-    - Clean the fingerprint sensor with a soft, dry cloth
-    - Re-enroll your fingerprint in the management software
-    - Ensure your finger is dry and covers the entire sensor
+  
+  <Accordion title="Biometric sensor not working">
+    - Clean the sensor with a soft, dry cloth
+    - Re-enroll your fingerprint
+    - Ensure your finger is dry and clean
+    - Update device firmware via VaultWares Manager
   </Accordion>
 </AccordionGroup>
 
 ## Next steps
 
 <CardGroup cols={2}>
-  <Card title="Hardware installation" icon="screwdriver-wrench" href="/installation/hardware-installation">
-    Detailed installation instructions
+  <Card title="Installation guide" icon="download" href="/installation/hardware-installation">
+    Detailed setup instructions
   </Card>
   <Card title="Best practices" icon="star" href="/guides/best-practices">
-    Security best practices
+    Security recommendations
   </Card>
-  <Card title="HSM devices" icon="server" href="/hardware/hsm">
-    Explore hardware security modules
+  <Card title="API integration" icon="code" href="/api-reference/endpoints">
+    Programmatic device management
   </Card>
   <Card title="Support" icon="headset" href="/support/contact">
-    Get technical support
+    Get technical assistance
   </Card>
 </CardGroup>
