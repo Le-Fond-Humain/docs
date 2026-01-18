@@ -1,0 +1,488 @@
+---
+title: Hardware security modules
+description: Enterprise-grade cryptographic key management and secure processing
+---
+
+## Overview
+
+VaultWares Hardware Security Modules (HSMs) provide tamper-resistant hardware for cryptographic operations, key generation, and secure key storage. HSMs protect your most sensitive cryptographic material and ensure compliance with the highest security standards.
+
+## Key features
+
+<CardGroup cols={2}>
+  <Card title="FIPS 140-2 Level 3" icon="certificate">
+    Highest level of cryptographic validation
+  </Card>
+  <Card title="Tamper-resistant" icon="shield-halved">
+    Physical security with automatic key zeroization
+  </Card>
+  <Card title="High performance" icon="gauge-high">
+    Up to 10,000 RSA-2048 operations per second
+  </Card>
+  <Card title="Multi-tenancy" icon="users">
+    Secure partitioning for multiple applications
+  </Card>
+</CardGroup>
+
+## Product lineup
+
+### VaultHSM PCIe
+
+High-performance PCIe card for server integration.
+
+**Specifications:**
+- **Form factor**: PCIe x4 low-profile
+- **Performance**: 10,000 RSA-2048 ops/sec
+- **Algorithms**: RSA, ECC, AES, 3DES, SHA-2, SHA-3
+- **Key storage**: 2,000+ key pairs
+- **Partitions**: Up to 100 logical partitions
+- **Certifications**: FIPS 140-2 Level 3, Common Criteria EAL4+
+- **Power**: 25W maximum
+
+### VaultHSM Network
+
+Network-attached HSM for distributed environments.
+
+**Specifications:**
+- **Form factor**: 1U rack-mountable
+- **Performance**: 20,000 RSA-2048 ops/sec
+- **Network**: Dual Gigabit Ethernet with failover
+- **Algorithms**: RSA, ECC, AES, 3DES, SHA-2, SHA-3
+- **Key storage**: 5,000+ key pairs
+- **Partitions**: Up to 500 logical partitions
+- **Certifications**: FIPS 140-2 Level 3, Common Criteria EAL4+
+- **Power**: Dual redundant PSU
+
+### VaultHSM Cloud
+
+Cloud-optimized HSM for hybrid deployments.
+
+**Specifications:**
+- **Deployment**: AWS, Azure, GCP, private cloud
+- **Performance**: 15,000 RSA-2048 ops/sec
+- **Algorithms**: RSA, ECC, AES, 3DES, SHA-2, SHA-3
+- **Key storage**: 3,000+ key pairs
+- **Partitions**: Up to 200 logical partitions
+- **Certifications**: FIPS 140-2 Level 3
+- **API**: PKCS#11, JCE, CNG, REST
+
+## Installation
+
+### PCIe HSM installation
+
+<Steps>
+  <Step title="Prepare server">
+    Power down the server and ensure proper grounding. Verify an available PCIe x4 slot.
+  </Step>
+  <Step title="Install card">
+    Insert the VaultHSM PCIe card into the PCIe slot and secure with the retention bracket.
+  </Step>
+  <Step title="Boot and verify">
+    Power on the server and verify the HSM is detected.
+    ```bash
+    lspci | grep VaultWares
+    # Should show: VaultWares HSM Controller
+    ```
+  </Step>
+  <Step title="Install drivers">
+    Install the VaultWares HSM drivers and management tools.
+    ```bash
+    sudo dpkg -i vaultwares-hsm-drivers.deb
+    sudo systemctl start vaultwares-hsm
+    ```
+  </Step>
+</Steps>
+
+### Network HSM installation
+
+<Steps>
+  <Step title="Rack mount">
+    Install the VaultHSM Network appliance in your server rack and connect power cables.
+  </Step>
+  <Step title="Network configuration">
+    Connect both Ethernet ports for redundancy. Configure network settings via serial console.
+    ```bash
+    # Connect via serial console (115200 8N1)
+    configure network
+    set ip 192.168.1.100
+    set netmask 255.255.255.0
+    set gateway 192.168.1.1
+    commit
+    ```
+  </Step>
+  <Step title="Access web interface">
+    Navigate to the HSM's IP address in your browser to access the management interface.
+  </Step>
+  <Step title="Initialize HSM">
+    Complete the initialization wizard to set up the security officer role.
+  </Step>
+</Steps>
+
+## Configuration
+
+### Initialize HSM
+
+<CodeGroup>
+```bash CLI
+# Initialize HSM with security officer
+vaultwares-hsm init \
+  --so-pin <security-officer-pin> \
+  --label "Production HSM"
+
+# Verify initialization
+vaultwares-hsm status
+```
+
+```python Python SDK
+from vaultwares import HSM
+
+# Connect to HSM
+hsm = HSM(slot=0)
+
+# Initialize
+hsm.initialize(
+    so_pin="<security-officer-pin>",
+    label="Production HSM"
+)
+
+# Verify
+print(hsm.get_info())
+```
+
+```java Java SDK
+import com.vaultwares.hsm.HSM;
+
+// Connect to HSM
+HSM hsm = new HSM(0);
+
+// Initialize
+hsm.initialize(
+    "<security-officer-pin>",
+    "Production HSM"
+);
+
+// Verify
+System.out.println(hsm.getInfo());
+```
+</CodeGroup>
+
+### Create partitions
+
+Partitions provide logical separation for different applications or departments:
+
+```bash
+# Create partition
+vaultwares-hsm partition create \
+  --name "WebServer" \
+  --so-pin <security-officer-pin> \
+  --user-pin <user-pin>
+
+# List partitions
+vaultwares-hsm partition list
+
+# Set partition policies
+vaultwares-hsm partition policy \
+  --name "WebServer" \
+  --min-pin-length 12 \
+  --max-failed-logins 5
+```
+
+### Generate keys
+
+<Tabs>
+  <Tab title="RSA keys">
+    ```bash
+    # Generate RSA-2048 key pair
+    vaultwares-hsm key generate \
+      --type RSA \
+      --size 2048 \
+      --label "WebServerKey" \
+      --partition "WebServer"
+
+    # Generate RSA-4096 key pair
+    vaultwares-hsm key generate \
+      --type RSA \
+      --size 4096 \
+      --label "RootCAKey" \
+      --partition "PKI"
+    ```
+  </Tab>
+  <Tab title="ECC keys">
+    ```bash
+    # Generate ECDSA P-256 key pair
+    vaultwares-hsm key generate \
+      --type ECDSA \
+      --curve P-256 \
+      --label "APIKey" \
+      --partition "WebServer"
+
+    # Generate ECDSA P-384 key pair
+    vaultwares-hsm key generate \
+      --type ECDSA \
+      --curve P-384 \
+      --label "HighSecurityKey" \
+      --partition "Finance"
+    ```
+  </Tab>
+  <Tab title="AES keys">
+    ```bash
+    # Generate AES-256 key
+    vaultwares-hsm key generate \
+      --type AES \
+      --size 256 \
+      --label "DatabaseKey" \
+      --partition "Database"
+
+    # Generate AES-128 key
+    vaultwares-hsm key generate \
+      --type AES \
+      --size 128 \
+      --label "SessionKey" \
+      --partition "WebServer"
+    ```
+  </Tab>
+</Tabs>
+
+## Integration
+
+### PKCS#11 integration
+
+VaultWares HSMs support the industry-standard PKCS#11 interface:
+
+```c
+// Load PKCS#11 library
+CK_FUNCTION_LIST *functions;
+C_GetFunctionList(&functions);
+
+// Initialize
+functions->C_Initialize(NULL);
+
+// Open session
+CK_SESSION_HANDLE session;
+functions->C_OpenSession(slot, CKF_SERIAL_SESSION | CKF_RW_SESSION, NULL, NULL, &session);
+
+// Login
+functions->C_Login(session, CKU_USER, pin, pin_len);
+
+// Perform cryptographic operations
+// ...
+
+// Cleanup
+functions->C_Logout(session);
+functions->C_CloseSession(session);
+functions->C_Finalize(NULL);
+```
+
+### OpenSSL integration
+
+Configure OpenSSL to use the HSM for private key operations:
+
+```bash
+# OpenSSL configuration
+cat > openssl-hsm.conf << EOF
+openssl_conf = openssl_init
+
+[openssl_init]
+engines = engine_section
+
+[engine_section]
+pkcs11 = pkcs11_section
+
+[pkcs11_section]
+engine_id = pkcs11
+dynamic_path = /usr/lib/engines/libpkcs11.so
+MODULE_PATH = /usr/lib/vaultwares-hsm-pkcs11.so
+init = 0
+EOF
+
+# Use HSM with OpenSSL
+openssl req -new -key "pkcs11:object=WebServerKey" \
+  -keyform engine -engine pkcs11 \
+  -out server.csr
+```
+
+### Web server integration
+
+<Tabs>
+  <Tab title="Apache">
+    ```apache
+    # Load PKCS#11 module
+    LoadModule ssl_module modules/mod_ssl.so
+
+    <VirtualHost *:443>
+        SSLEngine on
+        SSLCertificateFile /etc/ssl/certs/server.crt
+        
+        # Use HSM for private key
+        SSLCryptoDevice pkcs11
+        SSLCertificateKeyFile "pkcs11:object=WebServerKey;type=private"
+    </VirtualHost>
+    ```
+  </Tab>
+  <Tab title="Nginx">
+    ```nginx
+    # Nginx with HSM support
+    ssl_engine pkcs11;
+    
+    server {
+        listen 443 ssl;
+        
+        ssl_certificate /etc/ssl/certs/server.crt;
+        ssl_certificate_key "engine:pkcs11:pkcs11:object=WebServerKey;type=private";
+        
+        ssl_protocols TLSv1.2 TLSv1.3;
+    }
+    ```
+  </Tab>
+  <Tab title="IIS">
+    ```powershell
+    # Import certificate with HSM-backed private key
+    Import-Certificate -FilePath server.crt -CertStoreLocation Cert:\LocalMachine\My
+    
+    # Bind to IIS site
+    New-WebBinding -Name "Default Web Site" -Protocol https -Port 443
+    
+    # Associate HSM key
+    $cert = Get-ChildItem Cert:\LocalMachine\My | Where-Object {$_.Subject -eq "CN=server.example.com"}
+    Set-WebBinding -Name "Default Web Site" -Protocol https -Port 443 -Certificate $cert
+    ```
+  </Tab>
+</Tabs>
+
+## Security features
+
+### Physical security
+
+<AccordionGroup>
+  <Accordion title="Tamper detection">
+    Multiple sensors detect physical intrusion attempts. Any tampering triggers automatic key zeroization.
+  </Accordion>
+  <Accordion title="Secure boot">
+    Cryptographically verified firmware prevents unauthorized code execution.
+  </Accordion>
+  <Accordion title="Environmental sensors">
+    Temperature, voltage, and frequency sensors detect abnormal operating conditions.
+  </Accordion>
+  <Accordion title="Epoxy coating">
+    Tamper-evident epoxy coating protects critical components from physical attacks.
+  </Accordion>
+</AccordionGroup>
+
+### Cryptographic security
+
+- **True random number generation**: Hardware-based TRNG for key generation
+- **Key wrapping**: Secure key export using AES key wrap
+- **Dual control**: Require multiple administrators for sensitive operations
+- **M of N authentication**: Require M out of N key custodians to authorize operations
+
+### Audit and compliance
+
+```bash
+# Enable audit logging
+vaultwares-hsm audit enable --syslog-server 192.168.1.50
+
+# View audit logs
+vaultwares-hsm audit view --filter "key_generation"
+
+# Generate compliance report
+vaultwares-hsm report compliance --format pdf --output hsm-compliance.pdf
+```
+
+## Performance optimization
+
+### Load balancing
+
+Distribute cryptographic operations across multiple HSMs:
+
+```bash
+# Configure HSM cluster
+vaultwares-hsm cluster create \
+  --name "Production" \
+  --members hsm1.example.com,hsm2.example.com,hsm3.example.com \
+  --algorithm round-robin
+
+# Monitor cluster performance
+vaultwares-hsm cluster status
+```
+
+### Caching
+
+Enable session caching to reduce HSM load:
+
+```bash
+# Enable session caching
+vaultwares-hsm cache enable \
+  --max-sessions 1000 \
+  --timeout 3600
+```
+
+## Backup and recovery
+
+### Key backup
+
+<Warning>
+  HSM keys should be backed up using secure key wrapping. Never export keys in plaintext.
+</Warning>
+
+```bash
+# Backup keys to encrypted file
+vaultwares-hsm backup create \
+  --output hsm-backup.enc \
+  --password <backup-password>
+
+# Restore keys from backup
+vaultwares-hsm backup restore \
+  --input hsm-backup.enc \
+  --password <backup-password>
+```
+
+### Disaster recovery
+
+Implement a disaster recovery plan:
+
+1. **Regular backups**: Schedule automated key backups
+2. **Offsite storage**: Store backup files in a secure offsite location
+3. **Spare HSMs**: Maintain spare HSMs for rapid replacement
+4. **Documentation**: Document all partition configurations and policies
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="HSM not detected">
+    - Verify PCIe card is properly seated
+    - Check BIOS settings for PCIe configuration
+    - Ensure drivers are installed: `lsmod | grep vaultwares`
+  </Accordion>
+  <Accordion title="Performance degradation">
+    - Check HSM temperature and cooling
+    - Monitor partition usage: `vaultwares-hsm stats`
+    - Review audit logs for excessive failed operations
+  </Accordion>
+  <Accordion title="Authentication failures">
+    - Verify PIN/password is correct
+    - Check if account is locked: `vaultwares-hsm user status`
+    - Review security policies for PIN requirements
+  </Accordion>
+  <Accordion title="Network HSM unreachable">
+    - Verify network connectivity: `ping <hsm-ip>`
+    - Check firewall rules for required ports
+    - Ensure both network interfaces are connected
+  </Accordion>
+</AccordionGroup>
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Integration guides" icon="plug" href="/installation/integration-guides">
+    Integrate HSM with your applications
+  </Card>
+  <Card title="Best practices" icon="star" href="/guides/best-practices">
+    HSM security best practices
+  </Card>
+  <Card title="API reference" icon="code" href="/api-reference/authentication">
+    HSM API documentation
+  </Card>
+  <Card title="Support" icon="headset" href="/support/contact">
+    Get technical support
+  </Card>
+</CardGroup>
